@@ -1,0 +1,83 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<header class="hero-section">
+    <h3 class="header-text">Welcome to Car Collector! test@gmail.com</h3>
+</header>
+
+<div class="container">
+    <h3>Here are your profile details</h3>
+    <ul class="list-group">
+        <li class="list-group-item">Email: test@gmail.com</li>
+        <li class="list-group-item">Token: </li>
+
+        <!--TODO: Add Access Key-->
+
+    </ul>
+</div>
+
+<div class="container" style="padding-top: 50px;">
+    <h3>Add to your collection!</h3>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.year.label }}<br>
+            {{ form.year(size=32) }}
+            {% for error in form.year.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.make.label }}<br>
+            {{ form.make(size=32) }}
+        </p>
+        <p>
+            {{ form.model.label }}<br>
+            {{ form.model(size=32) }}
+            {% for error in form.model.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.color.label }}<br>
+            {{ form.color(size=32) }}
+            {% for error in form.color.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.image.label }}<br>
+            {{ form.image(size=32) }}
+            {% for error in form.image.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>{{ form.submit() }}
+        </p>
+    </form>
+    
+
+
+</div>
+
+<div class="container" style="padding-top: 50px;">
+    <h1>Welcome to your collection!</h1>
+    <!-- car imgs here with info -->
+    {% if year %}
+    <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src= "{{ image }}" alt="Car Image">
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <p class="card-text">{{ year }}</p>
+          <p class="card-text">{{ make }}</p>
+          <p class="card-text">{{ model }}</p>
+          <p class="card-text">{{ color }}</p>
+
+        </div>
+      </div>
+    {% endif %}
+</div>
+
+{% endblock content %}
